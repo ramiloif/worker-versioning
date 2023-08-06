@@ -1,0 +1,1 @@
+export const taskQueue = 'order-pizza-queue';
