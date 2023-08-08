@@ -5,7 +5,7 @@ const run = async () => {
 
   const connection = await Connection.connect();
   const response = await connection.workflowService.listWorkflowExecutions({
-    query: `RunId=""`,
+    query: `WorkflowType = 'versioningExample' and ExecutionStatus = 'Running'`,
     namespace: 'default',
     
   });
