@@ -15,7 +15,7 @@ const run = async() => {
     });
 
     const worker = await Worker.create({
-        workflowsPath: require.resolve('./workflowsV2'),
+        workflowsPath: require.resolve('./workflows'),
         activities,
         taskQueue,
         buildId: '2.0',

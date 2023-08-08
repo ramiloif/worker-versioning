@@ -2,6 +2,9 @@ import { Client, Connection, WorkflowClient } from "@temporalio/client";
 import { taskQueue } from "./constants";
 import { uuid4 } from "@temporalio/workflow";
 
+/**
+ * Notice! pizza client is not aware of the versionoing this is the point of all this sample project
+ */
 const run = async () => {
 
     const connection = await Connection.connect();
@@ -9,24 +12,13 @@ const run = async () => {
     connection,
     });
 
-  // Start a workflow that will run on the 1.0 worker
-  const firstWorkflowID = 'order-pizza_' + uuid4();
   const firstWorkflow = await client.workflow.start('versioningExample', {
-    workflowId: firstWorkflowID,
+    workflowId: 'order-pizza_' + uuid4(),
     taskQueue,
     workflowExecutionTimeout: '5 minutes',
   });
 
-  const connectiono = await Connection.connect();
-  const response = await connectiono.workflowService.listWorkflowExecutions({
-  query: `ExecutionStatus = "Running"`,
-  namespace: 'default'
-    });
-
-response.executions.forEach(e => { 
-    console.log(e.execution?.workflowId)
-    console.log(JSON.stringify(e, null, 2))
-})
+  console.log(`Started pizza order: ${firstWorkflow.workflowId}`);
 
 };
 

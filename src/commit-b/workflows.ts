@@ -20,7 +20,7 @@ export async function versioningExample(): Promise<string> {
   log.info('Workflow V2.0 started!', {});
   let shouldFinish = false;
   await addOlives();
-  await preparePizza('Margarita');
+  await preparePizza();
   
   setHandler(deliverOrder, async () => {
       shouldFinish = true;

@@ -118,13 +118,34 @@ So what is happening:
 
 This is our worker code:
 The `updateBuildIdCompatibility` (can be acomplished via cli as well),is adding version `1.0` to the task queue
-If we run the command: 
+If we run the command:
 ```
 $ temporal task-queue get-build-ids --task-queue order-pizza-queue
 ```
 
+We'll see  the following result:
 
-### Lets run some commands
+```
+  BuildIds  DefaultForSet  IsDefaultSet  
+  [1.0]               1.0  true         
+```
+
+There is only one version set for this task-queue ant that's the default.
+
+After we start worker2 we'll see the following result:
+```
+  BuildIds  DefaultForSet  IsDefaultSet  
+  [1.0]               1.0  false         
+  [2.0]               2.0  true     
+```
+
+Version 2 now is the default and 1 only exists for workflows that have been started their execution on the old worker
+
+### Lets see it in action
+
+Notice!! all the code in the workflows that are related to signals ( `setHandler, defineSignal`) is not related to versioning,
+the reason we use them is to create the demonstration that we have 2 workflows running in parallel and by calling the signal they both terminated at the same time 
+
 ```
 `npm run worker1`
 ```
@@ -160,17 +181,22 @@ Now we run the final command:
 ```
 $ npm run deliverAllPizzas
 ```
+This command signals all workflows to finish.
 
 
+Now go to the UI at http://localhost:8233/namespaces/default/workflows and see:
+One workflow concluded with  `"Concluded workflow on v1"`
+And the other one `"Concluded workflow on v1"`
 
+So the workflow that started on worker1 returned to the same worker and the other started from scratch on the newest worker( worker2)
 
-## Running
+### Workflow1
+![Alt text](workflow1.png)
 
+### Workflow2
+![Alt text](workflow2.png)
 
-
-
+In order to indicate that there are no workflows that need the old worker and we can stop him, we can use the following comannd:
 ```
-tctl workflow list -q "BuildIds='versioned:1.0' and ExecutionStatus = 'Running' and TaskQueue = 'order-pizza-queue'"
+temporal workflow list -q "BuildIds='versioned:1.0' and ExecutionStatus = 'Running' and TaskQueue = 'order-pizza-queue'"
 ```
-
-52dd4ff6-d863-48c2-af71-4b7d45f68f2a
