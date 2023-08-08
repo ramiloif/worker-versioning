@@ -5,8 +5,9 @@ const run = async () => {
 
   const connection = await Connection.connect();
   const response = await connection.workflowService.listWorkflowExecutions({
-    query: `ExecutionStatus = "Running"`,
+    query: `RunId=""`,
     namespace: 'default',
+    
   });
 
   const client = new WorkflowClient();
@@ -22,9 +23,16 @@ const run = async () => {
   });
 
   console.log('Reachability:', JSON.stringify(reachability));
-  if (reachability.buildIdReachability['1.0'].taskQueueReachability[taskQueue].length === 0) {
-    console.log('Confirmed that 1.0 is ready to be retired!');
-  }
+  const taskQueueReachability = reachability.buildIdReachability['1.0'].taskQueueReachability[taskQueue];
+  for (const [taskQueue, reachability] of Object.entries(taskQueueReachability)) {
+    if (reachability.length > 0) {
+      if (reachability[0] === 'NotFetched') {
+        console.log("rhat?")
+      } else {
+        console.log('Build id still reachable on:', taskQueue);
+      }
+    }
+};
 };
 
 run().catch((err) => {

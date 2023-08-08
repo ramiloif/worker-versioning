@@ -2,12 +2,12 @@ import { condition, defineSignal, log, proxyActivities, setHandler, sleep } from
 import type * as activities from '../activities';
 import type * as newActivities from './new-activities';
 
-const { preparePizza } = proxyActivities<typeof activities>({
-  startToCloseTimeout: '1 minute',
+const { bakePizza: preparePizza } = proxyActivities<typeof activities>({
+  startToCloseTimeout: '30 minutes',
 });
 
 const { addOlives } = proxyActivities<typeof newActivities>({
-  startToCloseTimeout: '1 minute',
+  startToCloseTimeout: '30 minutes',
 });
 
 export const deliverOrder = defineSignal<[string]>('deliverOrder');

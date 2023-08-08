@@ -1,7 +1,6 @@
 import { Connection, Client } from '@temporalio/client';
 import { Worker } from '@temporalio/worker';
 import * as activities from '../activities';
-import * as newActivities from './new-activities';
 import { taskQueue } from '../constants';
 
 const run = async() => {
@@ -10,23 +9,19 @@ const run = async() => {
     connection,
     });
 
-    // First, let's make the task queue use the build id versioning feature by adding an initial
-    // default version to the queue:
     await client.taskQueue.updateBuildIdCompatibility(taskQueue, {
         operation: 'addNewIdInNewDefaultSet',
-        buildId: '2.0',
-
+        buildId: '1.0',
     });
 
-    // Start a 1.0 worker
-    const worker1 = await Worker.create({
-        workflowsPath: require.resolve('./workflowsV2'),
-        activities: {...activities, ...newActivities},
+    const worker = await Worker.create({
+        workflowsPath: require.resolve('./workflows'),
+        activities,
         taskQueue,
-        buildId: '2.0',
+        buildId: '1.0',
         useVersioning: true,
     });
-    await worker1.run();
+    await worker.run();
 }
 
 

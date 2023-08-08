@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "build": "tsc --build",
-    "example": "ts-node src/example.ts",
-    "client": "ts-node src/client.ts",
-    "worker1": "ts-node src/commit-a/worker1.ts",
-    "worker2": "ts-node src/commit-b/worker2.ts",
+    "pizzaClient": "ts-node src/pizzaClient.ts",
+    "worker1": "ts-node src/commit-a/worker.ts",
+    "worker2": "ts-node src/commit-b/worker.ts",
+    "unversioned-worker": "ts-node src/unversioned/worker.ts",
     "deliverAllPizzas": "ts-node src/deliverAllPizzas.ts"
   },
   "nodemonConfig": {

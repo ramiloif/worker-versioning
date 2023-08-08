@@ -1,3 +1,7 @@
-export async function preparePizza(pizzaName: string): Promise<string> {
-  return `Preparing pizza ${pizzaName}`;
+export async function addOlives(): Promise<string> {
+  return `Adding olives for you: 🫒🫒🫒🫒`;
+}
+
+export async function bakePizza(): Promise<string> {
+  return `Baking pizza for you: 🍕🍕🍕🍕`;
 }

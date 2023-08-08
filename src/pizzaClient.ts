@@ -10,7 +10,7 @@ const run = async () => {
     });
 
   // Start a workflow that will run on the 1.0 worker
-  const firstWorkflowID = 'worker-versioning-first_' + uuid4();
+  const firstWorkflowID = 'order-pizza_' + uuid4();
   const firstWorkflow = await client.workflow.start('versioningExample', {
     workflowId: firstWorkflowID,
     taskQueue,
@@ -25,6 +25,7 @@ const run = async () => {
 
 response.executions.forEach(e => { 
     console.log(e.execution?.workflowId)
+    console.log(JSON.stringify(e, null, 2))
 })
 
 };
