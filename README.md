@@ -5,7 +5,7 @@ If you are not familiar with temporal here is where to start: https://temporal.i
 ### Problem Exploration
 First let's demonstrate the problem:
 In temporal Workflow must be deterministic, and the workflow function must give the same output for the same input.
-The challenge now is to find a practice of how to change the workflow code without getting into NDE( Non Deterministic Error).
+The challenge now is to find a practice of how to change the workflow code without getting into NDE(Non-Deterministic Error).
 
 
 # What will I learn in this repo:
