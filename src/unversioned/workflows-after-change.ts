@@ -7,9 +7,6 @@ const { bakePizza, addOlives } = proxyActivities<typeof activities>({
 
 export const deliverOrder = defineSignal<[string]>('deliverOrder');
 
-/**
- * The 1.0 version of the workflow we'll be making changes to
- */
 export async function versioningExample(): Promise<string> {
   log.info('Pizza order not versioned started!', {});
   let shouldFinish = false;

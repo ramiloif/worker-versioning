@@ -9,7 +9,6 @@ const run = async() => {
     connection,
     });
 
-    // Start a 1.0 worker
     const worker = await Worker.create({
         workflowsPath: require.resolve('./workflows-after-change'),
         activities,
