@@ -117,7 +117,7 @@ So what is happening:
 ```
 
 This is our worker code:
-The `updateBuildIdCompatibility` (can be acomplished via cli as well),is adding version `1.0` to the task queue
+The `updateBuildIdCompatibility` (which can be accomplished via a cli as well), is adding version `1.0` to the task queue
 If we run the command:
 ```
 $ temporal task-queue get-build-ids --task-queue order-pizza-queue
