@@ -39,13 +39,13 @@ First start the temporal server.
 $ npm run unversioned-worker
 ```
 
-grate we have worker up and running lets order a pizza
+Great we have a worker up and running let's order a pizza
 
 ```
 $ npm run unversioned-worker
 ```
 
-Thats it now we have the first worker up and running lets order a pizza.
+That's it now we have the first worker up and running let's order a pizza.
 
 ```
 $ npm run pizzaClient
@@ -59,7 +59,7 @@ Now you expected to see
 ```
 
 In the event history, all left is to call deliverAllPizzas but before that.
-Lets stop our worker
+Let's stop our worker
 and change the code inside `src/unversioned/worker.ts` to:
 ```
     const worker = await Worker.create({
@@ -89,7 +89,7 @@ The problem here is in the first execution of the workflow function it resulted 
 Since the function executed 2 times resulted in different outputs made it was not deterministic.
 Now we got some understanding of the error temporal user might have on every code change of the workflow function.
 
-* Cleanup note lets restart Temporal server and stop the worker so old stuff don't budder us
+* Cleanup note let's restart Temporal server and stop the worker so old stuff doesn't budder us
 
 
 # Part two suggested solution
