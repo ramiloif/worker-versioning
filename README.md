@@ -31,6 +31,8 @@ To start temporal run this command (between the demos please stop and start the 
 $ temporal server start-dev --dynamic-config-value frontend.workerVersioningDataAPIs=true --dynamic-config-value frontend.workerVersioningWorkflowAPIs=true --dynamic-config-value worker.buildIdScavengerEnabled=true
 ```
 
+Please start Temporal with this specific command because it enables the worker-versioning we are about to demonstrate 
+
 # Part one the problem
 
 First start the temporal server.
