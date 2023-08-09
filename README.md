@@ -1,5 +1,6 @@
 ### About this repo
 This repo demonstrates a work practice with temporal worker-based versioning in typescript.
+Temporal versioning is a big topic this repo suggests a specific solution and may not be compatible with all use cases.
 If you are not familiar with temporal here is where to start: https://temporal.io/<br/>
 The suggested practice in this repo is based on this article https://docs.temporal.io/workers#worker-versioning
 
