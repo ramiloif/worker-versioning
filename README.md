@@ -130,7 +130,7 @@ We'll see  the following result:
   [1.0]               1.0  true         
 ```
 
-There is only one version set for this task-queue ant that's the default.
+There is only one version set for this task-queue and that's the default.
 
 After we start worker2 we'll see the following result:
 ```
@@ -139,7 +139,7 @@ After we start worker2 we'll see the following result:
   [2.0]               2.0  true     
 ```
 
-Version 2 now is the default and 1 only exists for workflows that have been started their execution on the old worker
+Version 2 now is the default and 1 only exists for workflows that have started their execution on the old worker
 
 ### Lets see it in action
 
@@ -155,7 +155,7 @@ and order our first pizza
 npm run pizzaClient
 ```
 
-now let's start the second worker
+now let's start with the second worker
 ```
 npm run worker2
 ```
@@ -173,7 +173,7 @@ We have 2 workers running together on the same taskQueue `order-pizza-queue`.
 
 We ordered 2 pizzas,
 1. pizza 1 started its run on worker1 and finished `bakePizza`
-2. pizza 2 started its run on worker2 and finished `addOlives` and`bakePizza`
+2. pizza 2 started its run on worker2 and finished `addOlives` and `bakePizza`
 
 What we hope to happen is that the first pizza will come back to worker 1 and second to worker 2
 Now we run the final command: 
@@ -196,7 +196,7 @@ So the workflow that started on worker1 returned to the same worker and the othe
 ### Workflow2
 ![Alt text](workflow2.png)
 
-In order to indicate that there are no workflows that need the old worker and we can stop him, we can use the following comannd:
+In order to indicate that there are no workflows that need the old worker and we can stop him, we can use the following command:
 ```
 temporal workflow list -q "BuildIds='versioned:1.0' and ExecutionStatus = 'Running' and TaskQueue = 'order-pizza-queue'"
 ```
