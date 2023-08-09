@@ -190,7 +190,7 @@ This command signals all workflows to finish.
 
 Now go to the UI at http://localhost:8233/namespaces/default/workflows and see:
 One workflow concluded with  `"Concluded workflow on v1"`
-And the other one `"Concluded workflow on v1"`
+And the other one `"Concluded workflow on v2"`
 
 So the workflow that started on worker1 returned to the same worker and the other started from scratch on the newest worker( worker2)
 
