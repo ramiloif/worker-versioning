@@ -196,7 +196,7 @@ So the workflow that started on worker1 returned to the same worker and the othe
 ### Workflow2
 ![Alt text](workflow2.png)
 
-In order to indicate that there are no workflows that need the old worker and we can stop him, we can use the following command:
+To indicate that there are no workflows that need the old worker and we can stop him, we can use the following command:
 ```
 temporal workflow list -q "BuildIds='versioned:1.0' and ExecutionStatus = 'Running' and TaskQueue = 'order-pizza-queue'"
 ```
